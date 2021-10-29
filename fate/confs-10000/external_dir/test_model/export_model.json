@@ -1,0 +1,8 @@
+{
+    "role": "guest",
+    "party_id": 10000,
+    "model_id": "guest-10000#model",
+    "model_version": "202104140949285661769",
+    "output_path": "/data/projects/fate/external_dir/test_model"
+  }
+  

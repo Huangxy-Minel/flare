@@ -1,4 +1,4 @@
-cd /home/xinyang/fate_cluster_1.6.1/docker_base/confs-10000
+cd /home/xinyang/fate_cluster_1.6.1/docker_base/confs-10000/shared_dir/flare/deployment
 
 sh rm_container.sh
 sh create_container.sh network

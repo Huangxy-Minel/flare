@@ -1,0 +1,9 @@
+{
+    "file": "/data/projects/fate/examples/data/gzjk_10w_80_hetero_host.csv",
+    "head": 1,
+    "partition": 16,
+    "work_mode": 1,
+    "backend": 2,
+    "table_name": "gzjk_hetero_host",
+    "namespace": "experiment"
+}
