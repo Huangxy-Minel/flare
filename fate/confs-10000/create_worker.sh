@@ -2,6 +2,7 @@ USER=hxy
 WORKER_NUM=5
 BASE_DIR=/home/hxy/flare/fate
 PARTY='10000'
+TAG=1.6.1-release
 
 # ----------------create docker volumes----------------
 # shared_dir_data
