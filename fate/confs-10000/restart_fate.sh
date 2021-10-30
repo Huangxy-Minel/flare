@@ -1,6 +1,24 @@
-cd /home/xinyang/fate_cluster_1.6.1/docker_base/confs-10000/shared_dir/flare/deployment
+cd /home/hxy/flare/fate/confs-10000
 
-sh rm_container.sh
-sh create_container.sh network
-sh create_container.sh volume
-sh create_container.sh container
+bash rm_container.sh
+
+if [ $1 = 'standalone' ];then
+# ----------------standalone----------------
+bash create_container.sh standalone
+bash create_container.sh volume
+bash create_container.sh container
+fi
+
+if [ $1 = 'manager' ];then
+# ----------------cluster manager----------------
+bash create_container.sh manager
+bash create_container.sh volume
+bash create_container.sh container
+fi
+
+if [ $1 = 'worker' ];then
+# ----------------cluster worker----------------
+bash create_worker.sh
+fi
+
+

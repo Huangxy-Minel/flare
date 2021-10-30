@@ -1,5 +1,5 @@
 # ----------------variables----------------
-USER=xinyang
+USER=hxy
 PARTY='10000'
 WORKER_NUM=5
 
@@ -7,7 +7,7 @@ docker stop ${USER}_confs${PARTY}_sql
 docker stop ${USER}_confs${PARTY}_namenode
 docker stop ${USER}_confs${PARTY}_datanode
 docker stop ${USER}_confs${PARTY}_spark-master
-for ((i=1; i<=$WORKER_NUM; i++));
+for ((i=1; i<=${WORKER_NUM}; i++));
 do
 docker stop ${USER}_confs${PARTY}_spark-worker_$i
 done

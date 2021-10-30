@@ -1,8 +1,7 @@
-USER=xinyang
+USER=hxy
 WORKER_NUM=5
-BASE_DIR=/home/xinyang/fate_cluster_1.6.1/docker_base
-PARTY='9999'
-MANAGER_NETWORK=${USER}_confs10000_fate-network
+BASE_DIR=/home/hxy/flare/fate
+PARTY='10000'
 
 # ----------------create docker volumes----------------
 # shared_dir_data
@@ -21,7 +20,7 @@ docker run -d \
 -e "SERVICE_PRECONDITION=namenode:9000" \
 --env-file ${BASE_DIR}/confs-${PARTY}/confs/hadoop/hadoop.env \
 --restart=always \
---network=${MANAGER_NETWORK} \
+--network=${USER}_confs${PARTY}_fate-network \
 --network-alias=datanode \
 federatedai/hadoop-datanode:2.0.0-hadoop2.7.4-java8
 
@@ -37,7 +36,7 @@ docker run -d \
 --ipc=shareable \
 -e "SPARK_MASTER=spark://spark-master:7077" \
 --restart=always \
---network=${MANAGER_NETWORK} \
+--network=${USER}_confs${PARTY}_fate-network \
 --network-alias=spark-worker \
 --cpus=8 \
 --memory 6GB \

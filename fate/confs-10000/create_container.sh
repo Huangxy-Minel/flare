@@ -1,7 +1,7 @@
 # ----------------variables----------------
-USER=xinyang
+USER=hxy
 WORKER_NUM=5
-BASE_DIR=/home/xinyang/fate_cluster_1.6.1/docker_base
+BASE_DIR=/home/hxy/flare/fate
 PARTY='10000'
 
 NETWORK='192.168.136.0/24'
@@ -23,10 +23,19 @@ PORT_PULSAR3='10093'
 PORT_NGINX1='10094'
 PORT_NGINX2='10095'
 
-if [ $1 = 'network' ];then
+if [ $1 = 'standalone' ];then
 # ----------------create docker network----------------
 docker network create \
 --driver=bridge \
+--subnet=$NETWORK \
+--attachable=true \
+${USER}_confs${PARTY}_fate-network
+fi
+
+if [ $1 = 'manager' ];then
+# ----------------create docker overlay-network----------------
+docker network create \
+-d overlay \
 --subnet=$NETWORK \
 --attachable=true \
 ${USER}_confs${PARTY}_fate-network
@@ -59,7 +68,7 @@ ${USER}_confs${PARTY}_shared_dir_examples
 docker volume create --driver local \
 --opt type=none \
 --opt o=bind \
---opt device=${BASE_DIR}/confs-${PARTY}/shared_dir/flare/federatedml \
+--opt device=${BASE_DIR}/confs-${PARTY}/shared_dir/federatedml \
 ${USER}_confs${PARTY}_shared_dir_federatedml
 
 # shared_dir_data
