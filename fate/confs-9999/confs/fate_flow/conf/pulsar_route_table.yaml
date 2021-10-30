@@ -1,0 +1,8 @@
+10000:
+    host: 210.3.29.222
+    port: 10091
+    sslPort: 10092
+9999:
+    host: pulsar
+    port: 6650
+    sslPort: 6651

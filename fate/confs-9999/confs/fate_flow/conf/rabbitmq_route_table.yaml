@@ -1,0 +1,6 @@
+10000:
+    host: 210.3.29.222
+    port: 5672
+9999:
+    host: rabbitmq
+    port: 5672

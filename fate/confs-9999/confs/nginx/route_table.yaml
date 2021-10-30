@@ -1,0 +1,18 @@
+10000:
+  proxy:
+    - host: 210.3.29.222 
+      http_port: 10094
+      grpc_port: 10095
+  fateflow:
+    - host: 210.3.29.222
+      grpc_port: 10082
+      http_port: 10083
+9999:
+  proxy:
+    - host: nginx
+      http_port: 9300
+      grpc_port: 9310
+  fateflow:
+    - host: python
+      grpc_port: 9360
+      http_port: 9380
