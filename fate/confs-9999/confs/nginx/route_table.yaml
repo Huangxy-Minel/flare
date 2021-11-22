@@ -1,10 +1,10 @@
 10000:
   proxy:
-    - host: 210.3.29.222 
+    - host: 172.16.0.160
       http_port: 10094
       grpc_port: 10095
   fateflow:
-    - host: 210.3.29.222
+    - host: 172.16.0.160
       grpc_port: 10082
       http_port: 10083
 9999:

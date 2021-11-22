@@ -43,8 +43,8 @@ fate_on_eggroll:
     port: 9370
 fate_on_spark:
   spark:
-    cores_per_node: 20
-    nodes: 2
+    cores_per_node: 40
+    nodes: 1
   hdfs:
     name_node: hdfs://namenode:9000
   rabbitmq:
