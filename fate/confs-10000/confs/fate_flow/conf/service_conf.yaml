@@ -3,7 +3,7 @@ use_registry: false
 use_deserialize_safe_module: false
 fateflow:
   # you must set real ip address, 127.0.0.1 and 0.0.0.0 is not supported
-  host: 192.168.136.100
+  host: 192.168.135.100
   http_port: 9380
   grpc_port: 9360
   # support rollsite/nginx/fateflow as a coordination proxy
@@ -43,8 +43,8 @@ fate_on_eggroll:
     port: 9370
 fate_on_spark:
   spark:
-    cores_per_node: 20
-    nodes: 2
+    cores_per_node: 40
+    nodes: 1
   hdfs:
     name_node: hdfs://namenode:9000
   rabbitmq:

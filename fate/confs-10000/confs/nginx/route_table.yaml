@@ -1,6 +1,6 @@
 9999:
   proxy:
-    - host: 172.16.0.161 
+    - host: 172.16.0.161
       http_port: 10094
       grpc_port: 10095
   fateflow:
