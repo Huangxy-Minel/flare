@@ -1,11 +1,11 @@
 # ----------------variables----------------
-USER=hxy
+USER=xinyang
 WORKER_NUM=5
-BASE_DIR=/home/hxy/flare/fate
+BASE_DIR=/home/xinyang/fate_cluster_1.6.1/flare/fate
 PARTY='10000'
 
-NETWORK='192.168.136.0/24'
-FLOW_IP='192.168.136.100'
+NETWORK='192.168.135.0/24'
+FLOW_IP='192.168.135.100'
 TAG=1.6.1-release
 PORT_FATEBOARD='10081'
 PORT_GRPC='10082'
@@ -116,6 +116,7 @@ docker run -d \
 -p ${PORT_HADOOP}:9870/tcp \
 -p ${PORT_WEBHDFS}:50070/tcp \
 -v ${BASE_DIR}/confs-${PARTY}/confs/hadoop/core-site.xml:/etc/hadoop/core-site.xml \
+-v ${BASE_DIR}/confs-${PARTY}/confs/hadoop/hdfs-site.xml:/etc/hadoop/hdfs-site.xml \
 -v ${BASE_DIR}/confs-${PARTY}/shared_dir/data/namenode:/hadoop/dfs/name \
 --env-file ${BASE_DIR}/confs-${PARTY}/confs/hadoop/hadoop.env \
 --ipc=shareable \
@@ -129,6 +130,7 @@ federatedai/hadoop-namenode:2.0.0-hadoop2.7.4-java8
 docker run -d \
 --name ${USER}_confs${PARTY}_datanode \
 -v ${BASE_DIR}/confs-${PARTY}/shared_dir/data/datanode:/hadoop/dfs/data \
+-v ${BASE_DIR}/confs-${PARTY}/confs/hadoop/hdfs-site.xml:/etc/hadoop/hdfs-site.xml \
 --ipc=shareable \
 -e "SERVICE_PRECONDITION=namenode:9000" \
 --env-file ${BASE_DIR}/confs-${PARTY}/confs/hadoop/hadoop.env \
@@ -160,11 +162,12 @@ docker run -d \
 -p "$p":8081/tcp \
 --ipc=shareable \
 -e "SPARK_MASTER=spark://spark-master:7077" \
---restart=always \
 --network=${USER}_confs${PARTY}_fate-network \
 --network-alias=spark-worker \
---cpus=8 \
---memory 6GB \
+--cpus=4 \
+--memory 8GB \
+--gpus all \
+--rm \
 federatedai/spark-worker:${TAG}
 done
 
@@ -201,10 +204,12 @@ docker run -d \
 --network=${USER}_confs${PARTY}_fate-network \
 --network-alias=python \
 --ip=${FLOW_IP} \
---restart=always \
+--cpus=8 \
+--gpus all \
+--rm \
 federatedai/python-spark:${TAG} \
 "/bin/bash" "-c" "sleep 5 && python /data/projects/fate/python/fate_flow/fate_flow_server.py"
-
+# --restart=always 
 # --gpus all \
 # --rm \
 

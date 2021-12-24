@@ -1,6 +1,6 @@
-USER=hxy
+USER=xinyang
 WORKER_NUM=5
-BASE_DIR=/home/hxy/flare/fate
+BASE_DIR=/home/xinyang/fate_cluster_1.6.1/flare/fate
 PARTY='10000'
 TAG=1.6.1-release
 
